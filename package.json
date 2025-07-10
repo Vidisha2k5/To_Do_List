@@ -1,0 +1,36 @@
+{
+  "name": "my-days-task-manager",
+  "version": "1.0.0",
+  "description": "My Days - A beautiful and intuitive task management app that helps you organize your days with smart suggestions, notifications, and productivity tracking",
+  "main": "index.html",
+  "scripts": {
+    "start": "python server.py",
+    "serve": "python -m http.server 8000",
+    "dev": "python server.py"
+  },
+  "keywords": [
+    "todo",
+    "productivity",
+    "task-management",
+    "pwa",
+    "javascript",
+    "responsive"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/my-days-task-manager.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/my-days-task-manager/issues"
+  },
+  "homepage": "https://github.com/yourusername/my-days-task-manager#readme",
+  "dependencies": {},
+  "devDependencies": {},
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

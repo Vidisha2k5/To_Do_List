@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Days - Smart Task Manager</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6366f1">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-calendar-days"></i> My Days</h1>
+                <div class="header-controls">
+                    <button id="notificationToggle" class="btn btn-icon" title="Toggle Notifications">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    <button id="themeToggle" class="btn btn-icon" title="Toggle Theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Progress Section -->
+        <div class="progress-section">
+            <div class="progress-info">
+                <h3>Progress Overview</h3>
+                <div class="progress-stats">
+                    <div class="stat">
+                        <span class="stat-number" id="totalTasks">0</span>
+                        <span class="stat-label">Total Tasks</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="completedTasks">0</span>
+                        <span class="stat-label">Completed</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="pendingTasks">0</span>
+                        <span class="stat-label">Pending</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="overdueTasks">0</span>
+                        <span class="stat-label">Overdue</span>
+                    </div>
+                </div>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <span class="progress-text" id="progressText">0%</span>
+            </div>
+        </div>
+
+        <!-- Chart Section -->
+        <div class="chart-section">
+            <div class="chart-container">
+                <canvas id="taskChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Add Task Form -->
+        <div class="add-task-section">
+            <form id="taskForm" class="task-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="text" id="taskTitle" placeholder="What needs to be done?" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="taskDescription" placeholder="Description (optional)"></textarea>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <select id="taskCategory" title="Choose a category to organize your tasks">
+                            <option value="">Select Category</option>
+                            <option value="work">💼 Work - Meetings, reports, projects</option>
+                            <option value="personal">🏠 Personal - Family, hobbies, errands</option>
+                            <option value="study">📚 Study - Learning, courses, research</option>
+                            <option value="health">💪 Health - Exercise, medical, wellness</option>
+                            <option value="shopping">🛒 Shopping - Groceries, supplies, gifts</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="taskPriority" title="Set the importance level of this task">
+                            <option value="low">🟢 Low Priority</option>
+                            <option value="medium" selected>🟡 Medium Priority</option>
+                            <option value="high">🔴 High Priority</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="datetime-local" id="taskDueDate" title="Set when this task needs to be completed">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Add Task
+                </button>
+            </form>
+        </div>
+
+        <!-- Search and Filter Section -->
+        <div class="search-filter-section">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search tasks...">
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="pending">Pending</button>
+                <button class="filter-btn" data-filter="completed">Completed</button>
+                <button class="filter-btn" data-filter="overdue">Overdue</button>
+                <button class="filter-btn" data-filter="today">Due Today</button>
+            </div>
+            <div class="category-filter">
+                <select id="categoryFilter">
+                    <option value="">All Categories</option>
+                    <option value="work">💼 Work - Meetings, reports, projects</option>
+                    <option value="personal">🏠 Personal - Family, hobbies, errands</option>
+                    <option value="study">📚 Study - Learning, courses, research</option>
+                    <option value="health">💪 Health - Exercise, medical, wellness</option>
+                    <option value="shopping">🛒 Shopping - Groceries, supplies, gifts</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Tasks Section -->
+        <div class="tasks-section">
+            <div class="empty-state" id="emptyState">
+                <i class="fas fa-check-circle"></i>
+                <h3>No tasks yet!</h3>
+                <p id="motivationalQuote">A journey of a thousand miles begins with a single step.</p>
+                <p>Add your first task above to get started.</p>
+            </div>
+            <div class="tasks-container" id="tasksContainer">
+                <!-- Tasks will be dynamically inserted here -->
+            </div>
+        </div>
+
+        <!-- Smart Suggestions -->
+        <div class="suggestions-section" id="suggestionsSection">
+            <h3><i class="fas fa-lightbulb"></i> Smart Suggestions</h3>
+            <div class="suggestions-container" id="suggestionsContainer">
+                <!-- Suggestions will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Task Edit Modal -->
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Task</h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <form id="editTaskForm">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" id="editTaskTitle" required>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="editTaskDescription"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="editTaskCategory" title="Choose a category to organize your tasks">
+                            <option value="">Select Category</option>
+                            <option value="work">💼 Work - Meetings, reports, projects</option>
+                            <option value="personal">🏠 Personal - Family, hobbies, errands</option>
+                            <option value="study">📚 Study - Learning, courses, research</option>
+                            <option value="health">💪 Health - Exercise, medical, wellness</option>
+                            <option value="shopping">🛒 Shopping - Groceries, supplies, gifts</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Priority</label>
+                        <select id="editTaskPriority" title="Set the importance level of this task">
+                            <option value="low">🟢 Low Priority</option>
+                            <option value="medium">🟡 Medium Priority</option>
+                            <option value="high">🔴 High Priority</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Due Date</label>
+                    <input type="datetime-local" id="editTaskDueDate" title="Set when this task needs to be completed">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelEdit">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Permission Modal -->
+    <div class="modal" id="notificationModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Enable Notifications</h3>
+                <button class="modal-close" id="notificationModalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Would you like to enable browser notifications for task reminders?</p>
+                <p class="note">You'll be notified when tasks are due within 1 hour.</p>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn btn-secondary" id="notificationDeny">No Thanks</button>
+                <button type="button" class="btn btn-primary" id="notificationAllow">Enable Notifications</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="demo-data.js"></script>
+</body>
+</html>

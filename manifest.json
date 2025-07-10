@@ -1,0 +1,25 @@
+{
+    "name": "My Days - Smart Task Manager",
+    "short_name": "MyDays",
+    "description": "A beautiful and intuitive task management app that helps you organize your days with smart suggestions, notifications, and productivity tracking.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#6366f1",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiI+PHBhdGggZD0iTTI1NiA4QzExOS4wMzMgOCA4IDExOS4wMzMgOCAyNTZzMTExLjAzMyAyNDggMjQ4IDI0OCAyNDgtMTExLjAzMyAyNDgtMjQ4UzM5Mi45NjcgOCAyNTYgOHptMTEzLjIgMjczLjEtMTM0LjQgMTM0LjRjLTkuNSA5LjUtMjMuOCA5LjUtMzMuMyAwTDEyOC4xIDM0MS4xYy05LjUtOS41LTkuNS0yMy44IDAtMzMuM3M5LjUtMjMuOCAzMy4zIDBsMTY3LjYgMTY3LjYgMzMuMyAwYzIzLjggMCAyMy44IDkuNSAwIDMzLjN6IiBmaWxsPSIjNjM2NkYxIi8+PC9zdmc+",
+            "sizes": "192x192",
+            "type": "image/svg+xml"
+        },
+        {
+            "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiI+PHBhdGggZD0iTTI1NiA4QzExOS4wMzMgOCA4IDExOS4wMzMgOCAyNTZzMTExLjAzMyAyNDggMjQ4IDI0OCAyNDgtMTExLjAzMyAyNDgtMjQ4UzM5Mi45NjcgOCAyNTYgOHptMTEzLjIgMjczLjEtMTM0LjQgMTM0LjRjLTkuNSA5LjUtMjMuOCA5LjUtMzMuMyAwTDEyOC4xIDM0MS4xYy05LjUtOS41LTkuNS0yMy44IDAtMzMuM3M5LjUtMjMuOCAzMy4zIDBsMTY3LjYgMTY3LjYgMzMuMyAwYzIzLjggMCAyMy44IDkuNSAwIDMzLjN6IiBmaWxsPSIjNjM2NkYxIi8+PC9zdmc+",
+            "sizes": "512x512",
+            "type": "image/svg+xml"
+        }
+    ],
+    "categories": ["productivity", "utilities"],
+    "lang": "en-US",
+    "dir": "ltr"
+}
